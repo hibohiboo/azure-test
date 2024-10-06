@@ -1,2 +1,5 @@
 *
 !.gitignore
+
+# 下記サイトより メソ数値予報モデルＧＰＶ (ＭＳＭ) のサンプルを取得
+# https://www.data.jma.go.jp/developer/gpv_sample.html

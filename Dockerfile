@@ -4,6 +4,7 @@ WORKDIR /app
 RUN apt update
 RUN apt install wget -y 
 
+# https://confluence.ecmwf.int/display/ECC/Releases
 RUN wget https://confluence.ecmwf.int/download/attachments/45757960/eccodes-2.38.0-Source.tar.gz \
   && tar -xvf eccodes-2.38.0-Source.tar.gz \
   && rm eccodes-2.38.0-Source.tar.gz
