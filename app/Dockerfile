@@ -30,3 +30,5 @@ RUN pip3 install eccodes
 RUN pip3 install pygrib
 RUN pip3 install pandas
 
+COPY . .
+CMD ["python", "src/main.py"]

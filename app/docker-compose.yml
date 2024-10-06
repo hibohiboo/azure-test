@@ -3,7 +3,5 @@ services:
     build:
       context: .
     volumes:
-      - ./data:/grib2
-      - ./src:/src
       - ./dist:/dist
-    command: python /src/main.py '{"lat":35.6745,"lon":139.7169}'
+    command: python /app/src/main.py '{"lat":35.6745,"lon":139.7169}'

@@ -12,7 +12,7 @@ def run(param: dict) -> None:
     LAT_STEP = param["LAT_STEP"]
     LON_STEP = param["LON_STEP"]
     FILE_NAME = "Z__C_RJTD_20171205000000_MSM_GPV_Rjp_Lsurf_FH00-15_grib2"
-    gpv_file = pygrib.open("/grib2/" + FILE_NAME + ".bin")
+    gpv_file = pygrib.open("/app/data/" + FILE_NAME + ".bin")
 
     analDate = grib.getBaseData(gpv_file, lat, lon,  LAT_STEP, LON_STEP)
 
