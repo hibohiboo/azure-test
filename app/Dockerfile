@@ -29,6 +29,6 @@ RUN pip3 install --upgrade pip
 RUN pip3 install eccodes
 RUN pip3 install pygrib
 RUN pip3 install pandas
-
+RUN pip3 install azure-storage-queue
 COPY . .
 CMD ["python", "src/entry.py"]

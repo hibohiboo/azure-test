@@ -15,3 +15,4 @@ az storage queue create \
     --account-name "$STORAGE_ACCOUNT_NAME" \
     --connection-string "$QUEUE_CONNECTION_STRING"
 
+echo $QUEUE_CONNECTION_STRING

@@ -3,5 +3,7 @@ services:
     build:
       context: .
     volumes:
+      - ./data:/app/data
+      - ./src:/app/src
       - ./dist:/dist
-    # command: python /app/src/main.py '{"lat":35.6745,"lon":139.7169}'
+    command: python /app/src/main.py '{"lat":35.6745,"lon":139.7169}'
