@@ -1,5 +1,4 @@
 import pygrib
-import pandas as pd
 
 from lib import util
 from lib import grib
@@ -11,7 +10,7 @@ def run(param: dict) -> None:
     lon = param["lon"]
     LAT_STEP = param["LAT_STEP"]
     LON_STEP = param["LON_STEP"]
-    FILE_NAME = "Z__C_RJTD_20171205000000_MSM_GPV_Rjp_Lsurf_FH00-15_grib2"
+    FILE_NAME = param["FILE_NAME"]
     gpv_file = pygrib.open("/app/data/" + FILE_NAME + ".bin")
 
     analDate = grib.getBaseData(gpv_file, lat, lon,  LAT_STEP, LON_STEP)
@@ -32,15 +31,6 @@ def run(param: dict) -> None:
     # print(radiation_data)
 
     result_json = output.toOutputJson(temperature, radiation, pressure, mslp, uwind, vwind, rh,rain,lcloud,mcloud,hcloud,tcloud, analDate)
-
-    with open("/dist/" + FILE_NAME + ".json", 'w') as file:
-        # ファイルに書き込む
-        file.write(result_json)
-
     result_csv = output.toOutputCSV(temperature, radiation, pressure, mslp, uwind, vwind, rh,rain,lcloud,mcloud,hcloud,tcloud, analDate)
-    df = pd.DataFrame(* result_csv, columns=['validDate','Latitude', 'Longitude', 'analDate', 'temperature', 'Radiation', 'pressure', 'mslp', 'uwind', 'vwind', 'rh', 'rain', 'lcloud', 'mcloud', 'hcloud', 'tcloud'])
-    print(df)
 
-    with open("/dist/" + FILE_NAME + ".csv", 'w') as file:
-        # ファイルに書き込む
-        file.write(df.to_csv(index=False)) # index=False で行番号を出力しない
+    return [result_json, result_csv]
