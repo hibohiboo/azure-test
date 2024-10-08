@@ -10,7 +10,7 @@ source $BIN_DIR/.env
 # Azure Storage アカウントを作成
 # メッセージ キューを作成
 cd $BICEP_DIR/core/storage && az deployment group create \
-  --name functionsDeployment \
+  --name 03_04_createStorageAccount \
   --template-file blobContainerAndQueue.bicep \
   --parameters \
     storageAccountName=$STORAGE_ACCOUNT_NAME \

@@ -9,7 +9,7 @@ source $BIN_DIR/.env
 
 # Container Apps 環境を作成
 cd $BICEP_DIR/core/containerApps && az deployment group create \
-  --name functionsDeployment \
+  --name 02_createContainerAppsEnv \
   --template-file containerApps.bicep \
   --parameters \
     environmentName=$ENVIRONMENT \

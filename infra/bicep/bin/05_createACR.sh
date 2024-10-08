@@ -9,7 +9,7 @@ source $BIN_DIR/.env
 
 # コンテナー レジストリを作成
 cd $BICEP_DIR/core/containerApps && az deployment group create \
-  --name functionsDeployment \
+  --name 05_createACR \
   --template-file azureContainerRegistry.bicep \
   --parameters \
     acrName=$CONTAINER_REGISTRY_NAME \
