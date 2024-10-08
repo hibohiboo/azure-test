@@ -14,9 +14,9 @@ resource acrResource 'Microsoft.ContainerRegistry/registries@2023-01-01-preview'
 resource jobs 'Microsoft.App/jobs@2024-03-01' = {
   name: jobName
   location: location
-  // identity: {
-  //   type: 'SystemAssigned'
-  // }
+  identity: {
+    type: 'SystemAssigned'
+  }
   properties: {
     environmentId: resourceId('Microsoft.App/managedEnvironments', environmentName)
     configuration: {
@@ -93,5 +93,20 @@ resource jobs 'Microsoft.App/jobs@2024-03-01' = {
         }
       ]
     }
+  }
+}
+
+resource storageAccount 'Microsoft.Storage/storageAccounts@2023-01-01' existing = {
+  name: storageAccountName
+}
+var queueRoleDefinitionId= '974c5e8b-45b9-4653-ba55-5f855dd0fb88' // ストレージ キュー データ共同作成者
+var principalId = jobs.identity.principalId
+resource roleAssignment 'Microsoft.Authorization/roleAssignments@2022-04-01' = {
+  scope: storageAccount
+  name: guid(storageAccount.id, queueRoleDefinitionId)
+  properties: {
+    roleDefinitionId: resourceId('Microsoft.Authorization/roleDefinitions', queueRoleDefinitionId)
+    principalId: principalId
+    principalType: 'ServicePrincipal'
   }
 }
