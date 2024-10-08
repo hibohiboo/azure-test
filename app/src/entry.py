@@ -4,14 +4,18 @@ import pandas as pd
 
 import gpv_to_json
 
+from azure.identity import DefaultAzureCredential
 from azure.storage.queue import QueueServiceClient, QueueClient
 
-connection_string = os.getenv("AZURE_STORAGE_CONNECTION_STRING")
+default_credential = DefaultAzureCredential()
+
+storage_account_name = os.getenv("STORAGE_ACCOUNT_NAME")
 queue_name = os.getenv("AZURE_STORAGE_QUEUE_NAME")
 
+account_url = "https://" + storage_account_name + ".queue.core.windows.net"
+
 def main():
-    queue_service_client = QueueServiceClient.from_connection_string(connection_string)
-    queue_client = queue_service_client.get_queue_client(queue_name)
+    queue_client = queue_client = QueueClient(account_url, queue_name=queue_name ,credential=default_credential)
     
     # 1. Dequeue one message from the queue
     response = queue_client.receive_messages(messages_per_page=1, visibility_timeout=60)

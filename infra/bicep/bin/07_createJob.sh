@@ -21,7 +21,6 @@ cd $BICEP_DIR/core/containerApps && az deployment group create \
     storageAccountName=$STORAGE_ACCOUNT_NAME \
     queueName=$QUEUE_NAME \
     environmentName=$ENVIRONMENT \
-    queueConnectionString=$QUEUE_CONNECTION_STRING \
   -g $RESOURCE_GROUP
 
 
