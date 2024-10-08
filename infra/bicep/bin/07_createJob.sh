@@ -23,4 +23,5 @@ cd $BICEP_DIR/core/containerApps && az deployment group create \
     environmentName=$ENVIRONMENT \
   -g $RESOURCE_GROUP
 
+# TODO: GUIで コンテナアプリジョブ > 設定 > イベントドリブン スケーリング > ジョブスケールルール > queue > スケールルールの編集 > マネージドIDで認証するを有効化し、マネージドIDにシステム割り当てを設定する必要あり
 
